@@ -1,0 +1,21 @@
+diff -up Yap-5.1.1/C/alloc.c.creat Yap-5.1.1/C/alloc.c
+--- Yap-5.1.1/C/alloc.c.creat	2008-04-10 20:32:14.000000000 +0200
++++ Yap-5.1.1/C/alloc.c	2008-04-10 20:32:45.000000000 +0200
+@@ -796,7 +796,7 @@ InitWorkSpace(Int s)
+     itos(getpid(), &file[12]);
+ #endif /* HAVE_TMPNAM */
+ #endif /* HAVE_MKSTEMP */
+-    fd = open(file, O_CREAT|O_RDWR);
++    fd = open(file, O_CREAT|O_RDWR, 0644);
+     if (fd < 0) {
+       Yap_Error(FATAL_ERROR, TermNil, "mmap could not open %s", file);
+       return NULL;
+@@ -909,7 +909,7 @@ ExtendWorkSpace(Int s, int fixed_allocat
+     itos(getpid(), &file[12]);
+ #endif /* HAVE_TMPNAM */
+ #endif /* HAVE_MKSTEMP */
+-    fd = open(file, O_CREAT|O_RDWR);
++    fd = open(file, O_CREAT|O_RDWR, 0644);
+     if (fd < 0) {
+       Yap_ErrorMessage = Yap_ErrorSay;
+       snprintf4(Yap_ErrorMessage, MAX_ERROR_MSG_SIZE,
